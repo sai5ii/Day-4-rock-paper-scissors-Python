@@ -28,40 +28,39 @@ scissors = '''
 '''
 
 #Write your code below this line 👇
+#updated version
+#using CHOICES constant instead of variable
 
-choice_list = [rock,paper,scissors]
+CHOICES = [rock, paper, scissors]
+#using max choice to increase number of choices if required in futre
+MAX_CHOICE = 2
 
-user_choice = int(input("What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: "))
+user_choice = int(
+    input(
+        "What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: ")
+)
 
-computer_choice = random.randint(0,2)
+computer_choice = random.randint(0, MAX_CHOICE)
 
-print(f"{choice_list[user_choice]}")
+#by using constant CHOICES we can now write better/ readable code by mapping the user/computer choice with constant CHOICES list
+print(f"{CHOICES[user_choice]}")
 print("Computer chooses")
-print(f"{choice_list[computer_choice]}")
+print(f"{CHOICES[computer_choice]}")
 
-
-if user_choice == 0:
-  if computer_choice == 0:
+#updating if block for code readability
+if user_choice == computer_choice:
     print("Draw it is!")
-  elif computer_choice == 1:
+elif user_choice == 0 and computer_choice == 1:
     print("You lose")
-  else:
+elif user_choice == 1 and computer_choice == 0:
     print("You won")
-
-elif user_choice == 1:
-  if computer_choice == 1:
-    print("Draw it is")
-  elif computer_choice == 0:
-    print("You Won")
-  else:
+elif user_choice == 1 and computer_choice == 2:
     print("You lose")
-  
-elif user_choice == 2:
-  if computer_choice == 2:
-    print("Draw it is")
-  elif computer_choice == 0:
+elif user_choice == 2 and computer_choice == 1:
+    print("You won")
+elif user_choice == 2 and computer_choice == 0:
     print("You lose")
-  else:
+elif user_choice == 0 and computer_choice == 2:
     print("You won")
 else:
-  print("Not a correct choice !!")
+    print("Not a correct choice !!")
