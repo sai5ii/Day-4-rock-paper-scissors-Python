@@ -35,10 +35,20 @@ CHOICES = [rock, paper, scissors]
 #using max choice to increase number of choices if required in futre
 MAX_CHOICE = 2
 
-user_choice = int(
-    input(
-        "What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: ")
-)
+def input_from_user(message):
+  while True:
+    try:
+       user_input = int(input(message))       
+    except ValueError:
+       print("Not an integer! Try again.")
+       continue
+    else:
+       return user_input 
+       break 
+
+
+
+user_choice = input_from_user("What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: ")
 
 computer_choice = random.randint(0, MAX_CHOICE)
 
@@ -48,19 +58,25 @@ print("Computer chooses")
 print(f"{CHOICES[computer_choice]}")
 
 #updating if block for code readability
-if user_choice == computer_choice:
+
+def play_game():
+  if user_choice == computer_choice:
     print("Draw it is!")
-elif user_choice == 0 and computer_choice == 1:
-    print("You lose")
-elif user_choice == 1 and computer_choice == 0:
-    print("You won")
-elif user_choice == 1 and computer_choice == 2:
-    print("You lose")
-elif user_choice == 2 and computer_choice == 1:
-    print("You won")
-elif user_choice == 2 and computer_choice == 0:
-    print("You lose")
-elif user_choice == 0 and computer_choice == 2:
-    print("You won")
-else:
-    print("Not a correct choice !!")
+  elif user_choice == 0 and computer_choice == 1:
+      print("You lose")
+  elif user_choice == 1 and computer_choice == 0:
+      print("You won")
+  elif user_choice == 1 and computer_choice == 2:
+      print("You lose")
+  elif user_choice == 2 and computer_choice == 1:
+      print("You won")
+  elif user_choice == 2 and computer_choice == 0:
+      print("You lose")
+  elif user_choice == 0 and computer_choice == 2:
+      print("You won")
+  else:
+      print("Not a correct choice !!")
+
+
+while input("Do you want to play the game, y or n: ").lower == "y":
+  play_game()
