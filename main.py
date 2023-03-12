@@ -1,5 +1,6 @@
 import random
-
+from replit import clear
+  
 rock = '''
     _______
 ---'R  ____)
@@ -31,10 +32,6 @@ scissors = '''
 #updated version
 #using CHOICES constant instead of variable
 
-CHOICES = [rock, paper, scissors]
-#using max choice to increase number of choices if required in futre
-MAX_CHOICE = 2
-
 def input_from_user(message):
   while True:
     try:
@@ -43,40 +40,55 @@ def input_from_user(message):
        print("Not an integer! Try again.")
        continue
     else:
-       return user_input 
-       break 
+       if user_input not in range(0,3):
+         print("Choose 0 , 1 or 2 only ")
+       else:
+         return user_input
+         break 
 
-
-
-user_choice = input_from_user("What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: ")
-
-computer_choice = random.randint(0, MAX_CHOICE)
-
-#by using constant CHOICES we can now write better/ readable code by mapping the user/computer choice with constant CHOICES list
-print(f"{CHOICES[user_choice]}")
-print("Computer chooses")
-print(f"{CHOICES[computer_choice]}")
-
-#updating if block for code readability
 
 def play_game():
+  
+  CHOICES = [rock, paper, scissors]
+#using max choice to increase number of choices if required in futre
+  MAX_CHOICE = 2
+  user_choice = input_from_user("What do you choose, Type 0 for Rock, 1 for Paper or 2 for Scissors: ")
+  computer_choice = random.randint(0, MAX_CHOICE)
+
+  print(f"{CHOICES[user_choice]}")
+  print("Computer chooses")
+  print(f"{CHOICES[computer_choice]}")
+  
   if user_choice == computer_choice:
     print("Draw it is!")
+    return
   elif user_choice == 0 and computer_choice == 1:
-      print("You lose")
+    print("You lose")
+    return
   elif user_choice == 1 and computer_choice == 0:
-      print("You won")
+    print("You won")
+    return
   elif user_choice == 1 and computer_choice == 2:
-      print("You lose")
+    print("You lose")
+    return
   elif user_choice == 2 and computer_choice == 1:
-      print("You won")
+    print("You won")
+    return
   elif user_choice == 2 and computer_choice == 0:
-      print("You lose")
+    print("You lose")
+    return
   elif user_choice == 0 and computer_choice == 2:
-      print("You won")
+    print("You won")
+    return
   else:
-      print("Not a correct choice !!")
+    print("Not a correct choice !!")
+    return
 
+#by using constant CHOICES we can now write better/ readable code by mapping the user/computer choice with constant CHOICES list
 
-while input("Do you want to play the game, y or n: ").lower == "y":
+#updating if block for code readability
+while input("Do you want to play the game, y or n: ").lower() == "y":
+  clear()
   play_game()
+
+print("Thanks for playing...")
